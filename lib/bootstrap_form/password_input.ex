@@ -3,13 +3,12 @@ defmodule BootstrapForm.PasswordInput do
   Module responsible for generating a password input with bootstrap layout.
   """
 
-  @input_wrapper_class "form-group"
-  @label_class "control-label"
-  @input_class "form-control"
-
   import Phoenix.HTML.Form, only: [password_input: 3, label: 3]
 
   alias BootstrapForm.{Input, Wrapper}
+
+  @label_class "control-label"
+  @default_classes [input_class: "form-control", wrapper_class: "form-group"]
 
   @behaviour Input
 
@@ -30,15 +29,12 @@ defmodule BootstrapForm.PasswordInput do
   """
   @impl true
   def build(form, field_name, options \\ []) do
-    {wrapper_options, input_options} = Keyword.pop(options, :wrapper_html, [])
+    input = Input.new(form, field_name, options, @default_classes)
 
-    wrapper_options = Input.merge_options(wrapper_options, class: @input_wrapper_class)
-    input_options = Input.merge_options(input_options, class: @input_class)
-
-    Wrapper.build_tag(wrapper_options, input_options) do
+    Wrapper.build_tag(input) do
       [
         label(form, field_name, class: @label_class),
-        password_input(form, field_name, input_options)
+        password_input(form, field_name, input.options)
       ]
     end
   end

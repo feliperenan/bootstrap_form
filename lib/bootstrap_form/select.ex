@@ -3,15 +3,14 @@ defmodule BootstrapForm.Select do
   Module responsible for generating a select input with bootstrap layout.
   """
 
-  @input_wrapper_class "form-group"
-  @label_class "control-label"
-  @input_class "form-control"
-
   import Phoenix.HTML.Form, only: [select: 4, label: 4]
 
   alias BootstrapForm.{Input, Wrapper}
 
   @behaviour Input
+
+  @label_class "control-label"
+  @default_classes [input_class: "form-control", wrapper_class: "form-group"]
 
   @doc """
   Generate a bootstrap select input according to the given options.
@@ -36,17 +35,12 @@ defmodule BootstrapForm.Select do
   """
   @impl true
   def build(form, field_name, options) do
-    {label_text, options} = Keyword.pop(options, :label_text)
-    {values, options} = Keyword.pop(options, :values)
-    {wrapper_options, input_options} = Keyword.pop(options, :wrapper_html, [])
+    input = Input.new(form, field_name, options, @default_classes)
 
-    wrapper_options = Input.merge_options(wrapper_options, class: @input_wrapper_class)
-    input_options = Input.merge_options(input_options, class: @input_class)
-
-    Wrapper.build_tag(wrapper_options, options) do
+    Wrapper.build_tag(input) do
       [
-        label(form, field_name, label_text, class: @label_class),
-        select(form, field_name, values, input_options)
+        label(form, field_name, input.label_text, class: @label_class),
+        select(form, field_name, input.values, input.options)
       ]
     end
   end

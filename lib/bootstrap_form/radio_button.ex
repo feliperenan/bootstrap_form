@@ -3,13 +3,11 @@ defmodule BootstrapForm.RadioButton do
   Module responsible for generating a radio button with bootstrap layout.
   """
 
-  @check_input_wrapper_class "form-check"
-  @check_input_class "form-check-input"
-  @check_label_class "form-check-label"
-
   import Phoenix.HTML.Form, only: [radio_button: 4, label: 4]
 
   alias BootstrapForm.{Input, Wrapper}
+
+  @default_classes [input_class: "form-check-input", wrapper_class: "form-check"]
 
   @behaviour Input
 
@@ -32,17 +30,12 @@ defmodule BootstrapForm.RadioButton do
   """
   @impl true
   def build(form, field_name, options \\ []) do
-    {label_text, options} = Keyword.pop(options, :label_text)
-    {value, options} = Keyword.pop(options, :value)
-    {wrapper_options, input_options} = Keyword.pop(options, :wrapper_html, [])
+    input = Input.new(form, field_name, options, @default_classes)
 
-    wrapper_options = Input.merge_options(wrapper_options, class: @check_input_wrapper_class)
-    input_options = Input.merge_options(input_options, class: @check_input_class)
-
-    Wrapper.build_tag(wrapper_options, options) do
+    Wrapper.build_tag(input) do
       [
-        radio_button(form, field_name, value, input_options),
-        label(form, field_name, label_text, class: @check_label_class)
+        radio_button(form, field_name, input.value, input.options),
+        label(form, field_name, input.label_text, class: "form-check-label")
       ]
     end
   end
