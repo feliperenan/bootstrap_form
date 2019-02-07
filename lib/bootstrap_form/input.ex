@@ -48,20 +48,29 @@ defmodule BootstrapForm.Input do
     end
   end
 
-  def new(_form, _field_name, options, default_classes) do
+  def new(form, field_name, options, default_classes) do
     {wrapper_options, input_options} = Keyword.pop(options, :wrapper_html, [])
     {hint, input_options} = Keyword.pop(input_options, :hint)
     {label_text, input_options} = Keyword.pop(input_options, :label_text)
     {value, input_options} = Keyword.pop(input_options, :value)
     {values, input_options} = Keyword.pop(input_options, :values)
 
+    errors = get_errors(form, field_name)
+
     wrapper_default_class = Keyword.get(default_classes, :wrapper_class)
     input_default_class = Keyword.get(default_classes, :input_class)
 
     wrapper_options = merge_options(wrapper_options, class: wrapper_default_class)
-    input_options = merge_options(input_options, class: input_default_class)
+
+    input_options =
+      if Enum.empty?(errors) do
+        merge_options(input_options, class: input_default_class)
+      else
+        merge_options(input_options, class: "#{input_default_class} is-invalid")
+      end
 
     %__MODULE__{
+      errors: errors,
       hint: hint,
       label_text: label_text,
       options: input_options,
@@ -69,6 +78,14 @@ defmodule BootstrapForm.Input do
       values: values,
       wrapper_options: wrapper_options,
     }
+  end
+
+  defp get_errors(form, _field_name) when is_atom(form), do: []
+
+  defp get_errors(form, field_name) do
+    form.errors
+    |> Keyword.get_values(field_name)
+    |> Enum.map(fn {error, _opts} -> error end)
   end
 
   @doc """

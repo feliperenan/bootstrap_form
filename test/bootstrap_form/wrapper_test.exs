@@ -58,5 +58,41 @@ defmodule BootstrapForm.WrapperTest do
 
       assert safe_to_string(markup) == expected
     end
+
+    test "generates the wrapper with the error tag when there errors" do
+      input = %Input{errors: ["error 1", "error 2"]}
+
+      markup =
+        Wrapper.build_tag(input) do
+          text_input(:user, :name)
+        end
+
+      expected =
+        ~s(<div>) <>
+          ~s(<input id="user_name" name="user[name]" type="text">) <>
+          ~s(<div class="invalid-feedback">error 1</div>) <>
+          ~s(<div class="invalid-feedback">error 2</div>) <>
+        ~s(</div>)
+
+      assert safe_to_string(markup) == expected
+    end
+
+    test "generates the wrapper with the error tag and hint when there are both" do
+      input = %Input{errors: ["error"], hint: "Some hint"}
+
+      markup =
+        Wrapper.build_tag(input) do
+          text_input(:user, :name)
+        end
+
+      expected =
+        ~s(<div>) <>
+          ~s(<input id="user_name" name="user[name]" type="text">) <>
+          ~s(<div class="invalid-feedback">error</div>) <>
+          ~s(<small class="text-muted">Some hint</small>) <>
+        ~s(</div>)
+
+      assert safe_to_string(markup) == expected
+    end
   end
 end

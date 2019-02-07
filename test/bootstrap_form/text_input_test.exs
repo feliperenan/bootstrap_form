@@ -3,6 +3,7 @@ defmodule BootstrapForm.TextInputTest do
   doctest BootstrapForm.TextInput
 
   import Phoenix.HTML, only: [safe_to_string: 1]
+  import Phoenix.HTML.Form, only: [form_for: 4]
 
   alias BootstrapForm.TextInput
 
@@ -23,9 +24,24 @@ defmodule BootstrapForm.TextInputTest do
       expected =
         ~s(<input class="form-control my-class" id="user_name" name="user[name]" placeholder="Inform your full name." type="text">)
 
-       input = TextInput.build(:user, :name, class: "my-class", placeholder: "Inform your full name.")
+      input = TextInput.build(:user, :name, class: "my-class", placeholder: "Inform your full name.")
 
       assert safe_to_string(input) =~ expected
+    end
+
+    test "add the error class when the field has error" do
+      errors = [name: {"cannot be blank", []}]
+
+      conn = Plug.Test.conn(:get, "/foo", %{})
+
+      form =
+        form_for(conn, "/", [as: :user, errors: errors], fn form ->
+          TextInput.build(form, :name)
+        end)
+
+      expected = ~s(<input class="form-control is-invalid" id="user_name" name="user[name]" type="text">)
+
+      assert safe_to_string(form) =~ expected
     end
   end
 end
