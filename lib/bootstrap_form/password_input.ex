@@ -1,7 +1,5 @@
 defmodule BootstrapForm.PasswordInput do
-  @moduledoc """
-  Module responsible for generating a password input with bootstrap layout.
-  """
+  @moduledoc false
 
   import Phoenix.HTML.Form, only: [password_input: 3, label: 3]
 

@@ -1,7 +1,5 @@
 defmodule BootstrapForm.Input do
-  @moduledoc """
-  A behaviour to standardize the way that the input building.
-  """
+  @moduledoc false
 
   defstruct [
     errors: [],

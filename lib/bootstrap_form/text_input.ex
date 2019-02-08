@@ -1,7 +1,5 @@
 defmodule BootstrapForm.TextInput do
-  @moduledoc """
-  Module responsible for generating a text input with bootstrap layout.
-  """
+  @moduledoc false
 
   import Phoenix.HTML.Form, only: [text_input: 3, label: 3]
 

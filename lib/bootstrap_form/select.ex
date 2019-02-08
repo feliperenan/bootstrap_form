@@ -1,7 +1,5 @@
 defmodule BootstrapForm.Select do
-  @moduledoc """
-  Module responsible for generating a select input with bootstrap layout.
-  """
+  @moduledoc false
 
   import Phoenix.HTML.Form, only: [select: 4, label: 4]
 

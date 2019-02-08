@@ -1,7 +1,5 @@
 defmodule BootstrapForm.RadioButton do
-  @moduledoc """
-  Module responsible for generating a radio button with bootstrap layout.
-  """
+  @moduledoc false
 
   import Phoenix.HTML.Form, only: [radio_button: 4, label: 4]
 

@@ -6,19 +6,20 @@ defmodule BootstrapForm do
   `Phoenix.Html.Form` as possible. Then, when you don't provide a type attribute the
   `input/3` is going to guess the type using `Phoenix.HTML.Form.input_type/2`.
 
-        <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
-          <%= input :user, :name %>
-          <%= input :user, :password %>
-          <%= input :user, :email %>
-          <%= submit "Submit" %>
+        <%= form_for @changeset, Routes.user_path(@conn, :create), fn form -> %>
+          <%= input form, :name %>
+          <%= input form, :password %>
+          <%= input form, :email %>
+
+          <%= submit "Submit", class: "btn btn-primary" %>
         <% end %>
 
   If you want other types such as: select, radio button, checkbox, etc... you must provide the
   properly type to `input/3`.
 
-        <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
-          <%= input(:user, :active, type: :checkbox, label_text: "Active?") %>
-          <%= input(:user, :number, type: :select, label_text: "Select one number", values: 1..3) %>
+        <%= form_for @changeset, Routes.user_path(@conn, :create), fn form -> %>
+          <%= input(form, :active, type: :checkbox, label_text: "Active?") %>
+          <%= input(form, :number, type: :select, label_text: "Select one number", values: 1..3) %>
           <%= submit "Submit" %>
         <% end %>
 

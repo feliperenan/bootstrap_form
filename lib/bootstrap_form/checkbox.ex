@@ -1,7 +1,5 @@
 defmodule BootstrapForm.Checkbox do
-  @moduledoc """
-  Module responsible for generating a checkbox input with bootstrap layout.
-  """
+  @moduledoc false
 
   import Phoenix.HTML.Form, only: [checkbox: 3, label: 4]
 

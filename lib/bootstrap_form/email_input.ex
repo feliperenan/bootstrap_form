@@ -1,7 +1,5 @@
 defmodule BootstrapForm.EmailInput do
-  @moduledoc """
-  Module responsible for generating a email input with bootstrap layout.
-  """
+  @moduledoc false
 
   import Phoenix.HTML.Form, only: [email_input: 3, label: 3]
 

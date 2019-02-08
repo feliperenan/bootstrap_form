@@ -1,4 +1,6 @@
 defmodule BootstrapForm.Wrapper do
+  @moduledoc false
+
   import Phoenix.HTML.Tag, only: [content_tag: 3]
 
   alias BootstrapForm.Input

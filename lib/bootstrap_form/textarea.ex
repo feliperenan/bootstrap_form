@@ -1,7 +1,5 @@
 defmodule BootstrapForm.Textarea do
-  @moduledoc """
-  Module responsible for generating a textarea with bootstrap layout.
-  """
+  @moduledoc false
 
   import Phoenix.HTML.Form, only: [label: 3, textarea: 3]
 
