@@ -1,29 +1,43 @@
 defmodule BootstrapForm.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: :bootstrap_form,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.7",
-      start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      name: "BootstrapForm",
+      description: "A easier way to build Boostrap forms using Phoenix.HTML.Form.",
+      package: package(),
+      docs: [
+        source_ref: "v#{@version}",
+        main: "BootstrapForm",
+        source_url: "https://github.com/feliperenan/bootstrap_form"
+      ]
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       {:phoenix_html, ">= 2.13.1"}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Felipe Renan"],
+      licenses: ["MIT"],
+      links: %{github: "https://github.com/feliperenan/bootstrap_form"},
+      files: ~w(lib mix.exs README.md)
     ]
   end
 end
