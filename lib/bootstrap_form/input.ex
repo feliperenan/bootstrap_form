@@ -88,21 +88,19 @@ defmodule BootstrapForm.Input do
     |> Enum.map(fn {error, _opts} -> error end)
   end
 
-  @doc """
-  Merge default options with the given custom options.
-
-  This merge is going to concatenate css classes if there are classes in both options.
-
-  ## Examples
-
-     iex> BootstrapForm.Input.merge_options([class: "form-control"], [placeholder: "Username"])
-     [class: "form-control", placeholder: "Username"]
-
-     iex> BootstrapForm.Input.merge_options([class: "form-control"], [class: "my-class"])
-     [class: "my-class form-control"]
-
-  """
-  def merge_options(default_options, custom_options) do
+  # Merge default options with the given custom options.
+  #
+  # This merge is going to concatenate css classes if there are classes in both options.
+  #
+  # ## Examples
+  #
+  #    merge_options([class: "form-control"], [placeholder: "Username"])
+  #    #=> [class: "form-control", placeholder: "Username"]
+  #
+  #    merge_options([class: "form-control"], [class: "my-class"])
+  #    #=> [class: "my-class form-control"]
+  #
+  defp merge_options(default_options, custom_options) do
     Keyword.merge(default_options, custom_options, &merge_options/3)
   end
 

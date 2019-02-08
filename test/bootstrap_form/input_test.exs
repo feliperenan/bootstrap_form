@@ -11,24 +11,4 @@ defmodule BootstrapForm.InputTest do
       end
     end
   end
-
-  describe "merge_options/2" do
-    test "merge the two given options" do
-      default_options = [class: "form-label"]
-      custom_options = [placeholder: "Username"]
-
-      merged_options = Input.merge_options(default_options, custom_options)
-
-      assert merged_options == [class: "form-label", placeholder: "Username"]
-    end
-
-    test "concat classes when there are classes in both options" do
-      default_options = [class: "form-label"]
-      custom_options = [class: "my-custom-class"]
-
-      merged_options = Input.merge_options(default_options, custom_options)
-
-      assert merged_options == [class: "my-custom-class form-label"]
-    end
-  end
 end
