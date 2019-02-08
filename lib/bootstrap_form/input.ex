@@ -48,6 +48,22 @@ defmodule BootstrapForm.Input do
     end
   end
 
+  @doc """
+  Setup a `BootstrapForm.Input` according to the given options.
+
+  Every time that we need to build an input we need to configure its options and break these options
+  down to properly render it. Then imagine the following input:
+
+    <%= form_for @changeset, "/", fn form -> %>
+      <%= input form, :name, wrapper_html: [class: "wrapper-class"], hint: "Inform your full name" %>
+    <% end %>
+
+  As the input options, wrapper options and hint are within options, we need to split these options
+  in order to map the proper HTML attributes for each tag. Besides that, we need to set errors when
+  the field has them and set the default Bootstrap classes to the wrapper and the input.
+
+  This function is supposed to be used before an input is built.
+  """
   def new(form, field_name, options, default_classes) do
     {wrapper_options, input_options} = Keyword.pop(options, :wrapper_html, [])
     {hint, input_options} = Keyword.pop(input_options, :hint)
