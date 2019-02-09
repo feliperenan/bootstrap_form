@@ -20,7 +20,7 @@ defmodule BootstrapForm.RadioButton do
 
   ## Examples
 
-      build(:user, :color, class: "my-custom-class", label_text: "Red")
+      build(:user, :color, class: "my-custom-class", label_text: "Red", value: "red")
       # => <div class="form-check">
              <input class="form-check-input my-custom-class" id="user_color_red" name="user[color]" type="radio" value="red">
              <label class="form-check-label" for="user_color">Red</label>
