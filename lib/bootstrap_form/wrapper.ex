@@ -30,46 +30,19 @@ defmodule BootstrapForm.Wrapper do
            </div>
 
   """
-  def build_tag(%Input{errors: nil, hint: nil, wrapper_options: wrapper_options}, do: block) do
-    content_tag(:div, wrapper_options) do
-      [
-        block
-      ]
-    end
-  end
-
-  def build_tag(%Input{errors: nil, hint: hint, wrapper_options: wrapper_options}, do: block) do
-    content_tag(:div, wrapper_options) do
-      [
-        block,
-        content_tag(:small, hint, class: "text-muted")
-      ]
-    end
-  end
-
-  def build_tag(%Input{errors: errors, hint: nil, wrapper_options: wrapper_options}, do: block) do
-    content_tag(:div, wrapper_options) do
-      [
-        block,
-
-        for error <- errors do
-          content_tag(:div, error, class: "invalid-feedback")
-        end
-      ]
-    end
-  end
-
   def build_tag(%Input{errors: errors, hint: hint, wrapper_options: wrapper_options}, do: block) do
     content_tag(:div, wrapper_options) do
       [
         block,
-
-        for error <- errors do
-          content_tag(:div, error, class: "invalid-feedback")
-        end,
-
-        content_tag(:small, hint, class: "text-muted")
+        error_tag(errors),
+        hint_tag(hint)
       ]
     end
   end
+
+  defp error_tag([]), do: Phoenix.HTML.raw("")
+  defp error_tag(errors), do: Enum.map(errors, &content_tag(:div, &1, class: "invalid-feedback"))
+
+  defp hint_tag(nil), do: Phoenix.HTML.raw("")
+  defp hint_tag(hint), do: content_tag(:small, hint, class: "text-muted")
 end
