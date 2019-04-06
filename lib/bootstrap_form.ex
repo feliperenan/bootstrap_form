@@ -24,6 +24,11 @@ defmodule BootstrapForm do
           <%= submit "Submit", classL "btn btn-primary" %>
         <% end %>
 
+  It also supports a collection of checkboxes.
+
+        <%= input(form, :active, type: :collection_checkboxes, collection: [{true, "Yes"}, {false, "No"}]) %>
+        <%= input(form, :colors, type: :collection_checkboxes, collection: ['Red', 'Blue']) %>
+
   See `input/3` for the available options.
   """
 
@@ -49,6 +54,10 @@ defmodule BootstrapForm do
        input.
 
     * `:wrapper_html` - The HTML attributes to the wrapper tag.
+
+    * `:collection` - A list of items to generate multiple checkboxes or radio buttons. Required only
+       for collection_checkboxes and collection_radiobuttons.
+
   """
   def input(form, field_name, options \\ []) do
     {type, options} = Keyword.pop(options, :type)
