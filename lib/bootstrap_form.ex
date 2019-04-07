@@ -24,10 +24,13 @@ defmodule BootstrapForm do
           <%= submit "Submit", classL "btn btn-primary" %>
         <% end %>
 
-  It also supports a collection of checkboxes.
+  It also supports a collection of checkboxes and/or radio buttons.
 
         <%= input(form, :active, type: :collection_checkboxes, collection: [{true, "Yes"}, {false, "No"}]) %>
         <%= input(form, :colors, type: :collection_checkboxes, collection: ['Red', 'Blue']) %>
+
+        <%= input(form, :active, type: :collection_radio_buttons, collection: [{true, "Yes"}, {false, "No"}]) %>
+        <%= input(form, :colors, type: :collection_radio_buttons, collection: ['Red', 'Blue']) %>
 
   See `input/3` for the available options.
   """
