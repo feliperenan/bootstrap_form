@@ -11,7 +11,7 @@ defmodule BootstrapForm.RadioButtonTest do
       expected =
         ~s(<div class="form-check wrapper-class">) <>
           ~s(<input class="form-check-input" id="user_color_red" name="user[color]" type="radio" value="red">) <>
-          ~s(<label class="form-check-label" for="user_color">Red</label>) <>
+          ~s(<label class="form-check-label" for="user_color_red">Red</label>) <>
         ~s(</div>)
 
       input = RadioButton.build(:user, :color, value: "red", label_text: "Red", wrapper_html: [class: "wrapper-class"])

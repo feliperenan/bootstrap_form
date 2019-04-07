@@ -1,7 +1,7 @@
 defmodule BootstrapForm.RadioButton do
   @moduledoc false
 
-  import Phoenix.HTML.Form, only: [radio_button: 4, label: 4]
+  import Phoenix.HTML.Form, only: [radio_button: 4, label: 4, input_id: 3]
 
   alias BootstrapForm.{Input, Wrapper}
 
@@ -29,11 +29,12 @@ defmodule BootstrapForm.RadioButton do
   @impl true
   def build(form, field_name, options \\ []) do
     input = Input.new(form, field_name, options, @default_classes)
+    label_for = input_id(form, field_name, input.value)
 
     Wrapper.build_tag(input) do
       [
         radio_button(form, field_name, input.value, input.options),
-        label(form, field_name, input.label_text, class: "form-check-label")
+        label(form, field_name, input.label_text, class: "form-check-label", for: label_for)
       ]
     end
   end
