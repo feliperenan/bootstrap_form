@@ -21,7 +21,7 @@ defmodule BootstrapForm do
           <%= input(form, :active, type: :checkbox, label_text: "Active?") %>
           <%= input(form, :color, type: :radio_button, label_text: "Red", value: "red")
           <%= input(form, :number, type: :select, label_text: "Select one number", values: 1..3) %>
-          <%= submit "Submit", classL "btn btn-primary" %>
+          <%= submit "Submit", class: "btn btn-primary" %>
         <% end %>
 
   It also supports a collection of checkboxes and/or radio buttons.
