@@ -13,6 +13,7 @@ defmodule BootstrapForm.Input do
 
   alias BootstrapForm.{
     CollectionCheckboxes,
+    CollectionRadioButtons,
     Checkbox,
     EmailInput,
     PasswordInput,
@@ -32,7 +33,8 @@ defmodule BootstrapForm.Input do
     select: Select,
     textarea: Textarea,
     text_input: TextInput,
-    collection_checkboxes: CollectionCheckboxes
+    collection_checkboxes: CollectionCheckboxes,
+    collection_radio_buttons: CollectionRadioButtons,
   }
 
   @doc """
