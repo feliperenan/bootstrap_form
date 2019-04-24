@@ -17,7 +17,9 @@ Generates:
 ```
 
 Bootstrap Form is built on top of `Phoenix.HTML.Form`, so you have all options provided by 
-Phoenix.HTML available for inputs.
+`Phoenix.HTML` available for inputs.
+
+See the [docs](https://hexdocs.pm/bootstrap_form/BootstrapForm.html) and [this demo app](https://github.com/feliperenan/bootstrap_form_demo) for more info.
 
 ## Installation
 
