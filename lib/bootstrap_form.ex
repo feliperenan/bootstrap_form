@@ -13,8 +13,7 @@ defmodule BootstrapForm do
           <%= submit "Submit", class: "btn btn-primary" %>
         <% end %>
 
-  If you want other types such as: select, radio button, checkbox and textarea you must provide the
-  properly type to `input/3`.
+  If you want other types such as select, radio button, checkbox, and textarea you must provide the proper type to `input/3`.
 
         <%= form_for @changeset, Routes.user_path(@conn, :create), fn form -> %>
           <%= input(:user, :bio, type: :textarea)
@@ -38,15 +37,15 @@ defmodule BootstrapForm do
   @doc """
   Builds the input given its name and options.
 
-  As this function uses `Phoenix.HTML.Form` under the hood, the given `form` can be an atom or a
+  This function uses `Phoenix.HTML.Form` under the hood, the given `form` can be an atom or a
   `%Phoenix.HTML.Form{}` struct. The options are all options available in `Phoenix.HTML` plus
-  some custom options, see custom options section below.
+  some custom options, see the custom options section below.
 
   ## Custom options
 
   Some inputs need other options besides the ones supported by `Phoenix.HTML`, as follow:
 
-    * `:hint` - An string to render whithin the wrapper. This is optional for all inputs.
+    * `:hint` - An string to render within the wrapper. This is optional for all inputs.
 
     * `:label_text` - To change the label text that will be rendered with the input. Required for
         checkbox, radio button and select.
