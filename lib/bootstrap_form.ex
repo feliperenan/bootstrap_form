@@ -1,10 +1,9 @@
 defmodule BootstrapForm do
   @moduledoc """
-  Helpers related to producing inputs using Bootstrap classes.
+  **BootstrapForm** is a library to help you to build Bootstrap 4 forms for Phoenix applications.
 
-  As `BootstrapForm` is built on top of `Phoenix.HTML.Form`, we use as many resources from
-  `Phoenix.HTML.Form` as possible. Then, when you don't provide a type attribute the
-  `input/3` is going to guess the type using `Phoenix.HTML.Form.input_type/2`.
+  The following code will produce all necessary markup and classes for Bootstrap 4. Make sure that Bootstrap assets are
+  available in our application.
 
         <%= form_for @changeset, Routes.user_path(@conn, :create), fn form -> %>
           <%= input form, :name %>
@@ -13,7 +12,10 @@ defmodule BootstrapForm do
           <%= submit "Submit", class: "btn btn-primary" %>
         <% end %>
 
-  If you want other types such as select, radio button, checkbox, and textarea you must provide the proper type to `input/3`.
+
+  **BootstrapForm** is built on top of `Phoenix.HTML.Form`. So, if a type is not given, `input/3` is going to guess the
+  type using `Phoenix.HTML.Form.input_type/2`. If you want other types such as: select, radio button, checkbox, and
+  textarea you must provide the proper type to `input/3`.
 
         <%= form_for @changeset, Routes.user_path(@conn, :create), fn form -> %>
           <%= input(:user, :bio, type: :textarea)
@@ -31,34 +33,39 @@ defmodule BootstrapForm do
         <%= input(form, :active, type: :collection_radio_buttons, collection: [{true, "Yes"}, {false, "No"}]) %>
         <%= input(form, :colors, type: :collection_radio_buttons, collection: ['Red', 'Blue']) %>
 
-  See `input/3` for the available options.
+  If you want `input/3` available in your templates, import it your `app_web.ex`:
+
+        def view do
+          quote do
+            # ...
+            import BootstrapForm, only: [input: 3]
+          end
+        end
+
+  Or call `BootstrapForm.input/3` directly instead.
   """
 
   @doc """
-  Builds the input given its name and options.
+  Build an bootstrap input.
 
-  This function uses `Phoenix.HTML.Form` under the hood, the given `form` can be an atom or a
-  `%Phoenix.HTML.Form{}` struct. The options are all options available in `Phoenix.HTML` plus
-  some custom options, see the custom options section below.
+  This function uses `Phoenix.HTML.Form` under the hood, so the given form can be an atom or a `%Phoenix.HTML.Form{}`.
+  So it takes all options available in `Phoenix.HTML` plus some custom options.
 
   ## Custom options
 
-  Some inputs need other options besides the ones supported by `Phoenix.HTML`, as follow:
-
     * `:hint` - An string to render within the wrapper. This is optional for all inputs.
 
-    * `:label_text` - To change the label text that will be rendered with the input. Required for
-        checkbox, radio button and select.
+    * `:label_text` - To change the label text that will be rendered with the input. Required for checkboxes, radio
+       buttons and selects.
 
-    * `:value` - The value used by the radio button. Required only for radio buttons.
+    * `:value` - The value used for radio buttons. Required only for radio buttons.
 
-    * `:values` - The options that will be rendered by the select input. Required only for select
-       input.
+    * `:values` - Options that will be rendered for selects. Required only for selects.
 
-    * `:wrapper_html` - The HTML attributes to the wrapper tag.
+    * `:wrapper_html` - HTML attributes for wrapper tag.
 
-    * `:collection` - A list of items to generate multiple checkboxes or radio buttons. Required only
-       for collection_checkboxes and collection_radiobuttons.
+    * `:collection` - A list of items to generate multiple checkboxes or radio buttons. Required only for
+       `collection_checkboxes` and `collection_radio_buttons`.
 
   """
   def input(form, field_name, options \\ []) do
