@@ -73,6 +73,6 @@ defmodule BootstrapForm do
 
     type = type || Phoenix.HTML.Form.input_type(form, field_name)
 
-    BootstrapForm.Input.build(type, form, field_name, options)
+    BootstrapForm.InputBuilder.build(type, form, field_name, options)
   end
 end

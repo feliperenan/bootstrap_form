@@ -1,9 +1,9 @@
 defmodule BootstrapForm.CollectionCheckboxes do
   @moduledoc false
 
-  alias BootstrapForm.{Input, Checkbox}
+  alias BootstrapForm.{InputBuilder, Checkbox}
 
-  @behaviour Input
+  @behaviour InputBuilder
 
   @doc """
   Generate a list of bootstrap checkbox input according to the given options.
@@ -41,6 +41,7 @@ defmodule BootstrapForm.CollectionCheckboxes do
              <label class="form-check-label" for="user_colors">Blue</label>
           </div>
   """
+  @impl true
   def build(form, field_name, options \\ []) do
     # Ensure that the type is removed from options since it's going to be added by the Checkbox module.
     {_type, options} = Keyword.pop(options, :type)

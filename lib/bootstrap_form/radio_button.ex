@@ -3,11 +3,11 @@ defmodule BootstrapForm.RadioButton do
 
   import Phoenix.HTML.Form, only: [radio_button: 4, label: 4, input_id: 3]
 
-  alias BootstrapForm.{Input, Wrapper}
+  alias BootstrapForm.{Input, InputBuilder, Wrapper}
 
   @default_classes [input_class: "form-check-input", wrapper_class: "form-check"]
 
-  @behaviour Input
+  @behaviour InputBuilder
 
   @doc """
   Generate a bootstrap radio button according to the given options.

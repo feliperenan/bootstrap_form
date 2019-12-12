@@ -3,11 +3,11 @@ defmodule BootstrapForm.Checkbox do
 
   import Phoenix.HTML.Form, only: [checkbox: 3, label: 4]
 
-  alias BootstrapForm.{Input, Wrapper}
+  alias BootstrapForm.{Input, InputBuilder, Wrapper}
 
   @default_classes [input_class: "form-check-input", wrapper_class: "form-check"]
 
-  @behaviour Input
+  @behaviour InputBuilder
 
   @doc """
   Generate a bootstrap checkbox input according to the given options.

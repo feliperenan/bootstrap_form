@@ -1,9 +1,9 @@
 defmodule BootstrapForm.CollectionRadioButtons do
   @moduledoc false
 
-  alias BootstrapForm.{Input, RadioButton}
+  alias BootstrapForm.{InputBuilder, RadioButton}
 
-  @behaviour Input
+  @behaviour InputBuilder
 
   @doc """
   Generate a list of bootstrap radio buttons according to the given options.
@@ -37,6 +37,7 @@ defmodule BootstrapForm.CollectionRadioButtons do
              <label class="form-check-label" for="user_colors">Blue</label>
           </div>
   """
+  @impl true
   def build(form, field_name, options \\ []) do
     # Ensure that the type is removed from options since it's going to be added by the RadioButton module.
     {_type, options} = Keyword.pop(options, :type)

@@ -3,12 +3,12 @@ defmodule BootstrapForm.Textarea do
 
   import Phoenix.HTML.Form, only: [label: 3, textarea: 3]
 
-  alias BootstrapForm.{Input, Wrapper}
+  alias BootstrapForm.{Input, InputBuilder, Wrapper}
 
   @label_class "control-label"
   @default_classes [input_class: "form-control", wrapper_class: "form-group"]
 
-  @behaviour BootstrapForm.Input
+  @behaviour InputBuilder
 
   @doc """
   Generate a bootstrap textarea input according to the given options.

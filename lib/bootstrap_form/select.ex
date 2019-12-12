@@ -3,9 +3,9 @@ defmodule BootstrapForm.Select do
 
   import Phoenix.HTML.Form, only: [select: 4, label: 4]
 
-  alias BootstrapForm.{Input, Wrapper}
+  alias BootstrapForm.{Input, InputBuilder, Wrapper}
 
-  @behaviour Input
+  @behaviour InputBuilder
 
   @label_class "control-label"
   @default_classes [input_class: "form-control", wrapper_class: "form-group"]

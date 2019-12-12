@@ -3,12 +3,12 @@ defmodule BootstrapForm.PasswordInput do
 
   import Phoenix.HTML.Form, only: [password_input: 3, label: 3]
 
-  alias BootstrapForm.{Input, Wrapper}
+  alias BootstrapForm.{Input, InputBuilder, Wrapper}
 
   @label_class "control-label"
   @default_classes [input_class: "form-control", wrapper_class: "form-group"]
 
-  @behaviour Input
+  @behaviour InputBuilder
 
   @doc """
   Generate a bootstrap password input according to the given options.
