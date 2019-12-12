@@ -1,5 +1,7 @@
 # Bootstrap Form
 
+![Actions Status](https://github.com/feliperenan/bootstrap_form/workflows/Elixir%20CI/badge.svg)
+
 Build Bootstrap Forms easily using Bootstrap Form. With this library, you can build a Bootstrap 
 field with one line of code. See:
 
