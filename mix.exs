@@ -29,7 +29,8 @@ defmodule BootstrapForm.MixProject do
   defp deps do
     [
       {:phoenix_html, ">= 2.13.1"},
-      {:ex_doc, "~> 0.18", only: :dev}
+      {:ex_doc, "~> 0.18", only: :dev},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
 

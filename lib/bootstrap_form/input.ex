@@ -11,6 +11,8 @@ defmodule BootstrapForm.Input do
     wrapper_options: []
   ]
 
+  @type t :: %__MODULE__{}
+
   @doc """
   Setup a `BootstrapForm.Input` according to the given options.
 
@@ -24,6 +26,7 @@ defmodule BootstrapForm.Input do
 
   This function is supposed to be used before an input is built.
   """
+  @spec new(BootstrapForm.form, BootstrapForm.field, Keyword.t, Keyword.t) :: t()
   def new(form, field_name, options, default_classes) do
     {wrapper_options, input_options} = Keyword.pop(options, :wrapper_html, [])
     {hint, input_options} = Keyword.pop(input_options, :hint)

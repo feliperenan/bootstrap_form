@@ -1,7 +1,7 @@
 defmodule BootstrapForm.InputBuilder do
   @moduledoc false
 
-  @callback build(Form.t() | atom, atom, Keyword.t()) :: term
+  @callback build(BootstrapForm.form, BootstrapForm.field, Keyword.t) :: BootstrapForm.safe_html
 
   @implementation_types %{
     checkbox: BootstrapForm.Checkbox,
@@ -21,6 +21,7 @@ defmodule BootstrapForm.InputBuilder do
   This function delegates the build for some module listed in @implementation_types. Case an unknow
   type is given, an error is going to be raised.
   """
+  @spec build(atom, BootstrapForm.form, BootstrapForm.field, Keyword.t) :: BootstrapForm.safe_html
   def build(type, form, field_name, options \\ []) do
     case @implementation_types[type] do
       nil -> raise "type: :#{type} is not yet implemented"

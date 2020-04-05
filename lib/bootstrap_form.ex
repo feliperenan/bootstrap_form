@@ -18,20 +18,20 @@ defmodule BootstrapForm do
   textarea you must provide the proper type to `input/3`.
 
         <%= form_for @changeset, Routes.user_path(@conn, :create), fn form -> %>
-          <%= input(:user, :bio, type: :textarea)
-          <%= input(form, :active, type: :checkbox, label_text: "Active?") %>
-          <%= input(form, :color, type: :radio_button, label_text: "Red", value: "red")
-          <%= input(form, :number, type: :select, label_text: "Select one number", values: 1..3) %>
+          <%= input :user, :bio, type: :textarea
+          <%= input form, :active, type: :checkbox, label_text: "Active?" %>
+          <%= input form, :color, type: :radio_button, label_text: "Red", value: "red"
+          <%= input form, :number, type: :select, label_text: "Select one number", values: 1..3 %>
           <%= submit "Submit", class: "btn btn-primary" %>
         <% end %>
 
   It also supports a collection of checkboxes and/or radio buttons.
 
-        <%= input(form, :active, type: :collection_checkboxes, collection: [{true, "Yes"}, {false, "No"}]) %>
-        <%= input(form, :colors, type: :collection_checkboxes, collection: ['Red', 'Blue']) %>
+        <%= input form, :active, type: :collection_checkboxes, collection: [{true, "Yes"}, {false, "No"}] %>
+        <%= input form, :colors, type: :collection_checkboxes, collection: ['Red', 'Blue']) %>
 
-        <%= input(form, :active, type: :collection_radio_buttons, collection: [{true, "Yes"}, {false, "No"}]) %>
-        <%= input(form, :colors, type: :collection_radio_buttons, collection: ['Red', 'Blue']) %>
+        <%= input form, :active, type: :collection_radio_buttons, collection: [{true, "Yes"}, {false, "No"}] %>
+        <%= input form, :colors, type: :collection_radio_buttons, collection: ['Red', 'Blue'] %>
 
   If you want `input/3` available in your templates, import it your `app_web.ex`:
 
@@ -45,11 +45,16 @@ defmodule BootstrapForm do
   Or call `BootstrapForm.input/3` directly instead.
   """
 
+  @type form :: Phoenix.HTML.Form.t() | atom
+  @type field :: atom() | String.t
+  @type safe_html :: Phoenix.HTML.safe | list(Phoenix.HTML.safe)
+
+
   @doc """
-  Build an bootstrap input.
+  Build a bootstrap input.
 
   This function uses `Phoenix.HTML.Form` under the hood, so the given form can be an atom or a `%Phoenix.HTML.Form{}`.
-  So it takes all options available in `Phoenix.HTML` plus some custom options.
+  It takes all options available in `Phoenix.HTML` plus options listed below.
 
   ## Custom options
 
@@ -68,6 +73,7 @@ defmodule BootstrapForm do
        `collection_checkboxes` and `collection_radio_buttons`.
 
   """
+  @spec input(form, field, Keyword.t) :: safe_html
   def input(form, field_name, options \\ []) do
     {type, options} = Keyword.pop(options, :type)
 
