@@ -1,25 +1,26 @@
 defmodule BootstrapForm.WrapperTest do
   use ExUnit.Case
-  doctest BootstrapForm.Wrapper
+
+  alias BootstrapForm.{Input, Wrapper}
 
   import Phoenix.HTML, only: [safe_to_string: 1]
   import Phoenix.HTML.Form, only: [text_input: 2]
 
-  alias BootstrapForm.{Input, Wrapper}
+  doctest BootstrapForm.Wrapper
 
   describe "build_tag/3" do
     test "generates the wrapper to the given block" do
       input = %Input{wrapper_options: [class: "my-class"]}
 
       markup =
-        Wrapper.build_tag(input) do
+        Wrapper.build_tag input do
           text_input(:user, :name)
         end
 
       expected =
         ~s(<div class="my-class">) <>
           ~s(<input id="user_name" name="user[name]" type="text">) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert safe_to_string(markup) == expected
     end
@@ -28,7 +29,7 @@ defmodule BootstrapForm.WrapperTest do
       input = %Input{wrapper_options: [class: "my-class"], hint: "Some hint"}
 
       markup =
-        Wrapper.build_tag(input) do
+        Wrapper.build_tag input do
           text_input(:user, :name)
         end
 
@@ -36,7 +37,7 @@ defmodule BootstrapForm.WrapperTest do
         ~s(<div class="my-class">) <>
           ~s(<input id="user_name" name="user[name]" type="text">) <>
           ~s(<small class="text-muted">Some hint</small>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert safe_to_string(markup) == expected
     end
@@ -46,7 +47,7 @@ defmodule BootstrapForm.WrapperTest do
       input = %Input{wrapper_options: wrapper_options, hint: "Some hint"}
 
       markup =
-        Wrapper.build_tag(input) do
+        Wrapper.build_tag input do
           text_input(:user, :name)
         end
 
@@ -54,7 +55,7 @@ defmodule BootstrapForm.WrapperTest do
         ~s(<div class="my-class" data-field>) <>
           ~s(<input id="user_name" name="user[name]" type="text">) <>
           ~s(<small class="text-muted">Some hint</small>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert safe_to_string(markup) == expected
     end
@@ -63,7 +64,7 @@ defmodule BootstrapForm.WrapperTest do
       input = %Input{errors: ["error 1", "error 2"]}
 
       markup =
-        Wrapper.build_tag(input) do
+        Wrapper.build_tag input do
           text_input(:user, :name)
         end
 
@@ -72,7 +73,7 @@ defmodule BootstrapForm.WrapperTest do
           ~s(<input id="user_name" name="user[name]" type="text">) <>
           ~s(<div class="invalid-feedback">error 1</div>) <>
           ~s(<div class="invalid-feedback">error 2</div>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert safe_to_string(markup) == expected
     end
@@ -81,7 +82,7 @@ defmodule BootstrapForm.WrapperTest do
       input = %Input{errors: ["error"], hint: "Some hint"}
 
       markup =
-        Wrapper.build_tag(input) do
+        Wrapper.build_tag input do
           text_input(:user, :name)
         end
 
@@ -90,7 +91,7 @@ defmodule BootstrapForm.WrapperTest do
           ~s(<input id="user_name" name="user[name]" type="text">) <>
           ~s(<div class="invalid-feedback">error</div>) <>
           ~s(<small class="text-muted">Some hint</small>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert safe_to_string(markup) == expected
     end

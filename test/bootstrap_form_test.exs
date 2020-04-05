@@ -1,9 +1,10 @@
 defmodule BootstrapFormTest do
   use ExUnit.Case
-  doctest BootstrapForm
 
   import Phoenix.HTML, only: [safe_to_string: 1]
   import Phoenix.HTML.Form, only: [form_for: 4]
+
+  doctest BootstrapForm
 
   describe "input/3" do
     test "generates an input with bootstrap markup" do
@@ -11,7 +12,7 @@ defmodule BootstrapFormTest do
         ~s(<div class="form-group">) <>
           ~s(<label class="control-label" for="user_name">Name</label>) <>
           ~s(<input class="form-control" id="user_name" name="user[name]" type="text">) <>
-        ~s(</div>)
+          ~s(</div>)
 
       form =
         form_for(conn(), "/", [as: :user], fn form ->
@@ -27,13 +28,12 @@ defmodule BootstrapFormTest do
           ~s(<input name="user[active]" type="hidden" value="false">) <>
           ~s(<input class="form-check-input" id="user_active" name="user[active]" type="checkbox" value="true">) <>
           ~s(<label class="form-check-label" for="user_active">Active?</label>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       form =
         form_for(conn(), "/", [as: :user], fn form ->
           BootstrapForm.input(form, :active, type: :checkbox, label_text: "Active?")
         end)
-
 
       assert safe_to_string(form) =~ expected
     end

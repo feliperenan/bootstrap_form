@@ -1,10 +1,11 @@
 defmodule BootstrapForm.PasswordInputTest do
   use ExUnit.Case
-  doctest BootstrapForm.PasswordInput
+
+  alias BootstrapForm.PasswordInput
 
   import Phoenix.HTML, only: [safe_to_string: 1]
 
-  alias BootstrapForm.PasswordInput
+  doctest PasswordInput
 
   describe "build/3" do
     test "generates an password input" do
@@ -12,7 +13,7 @@ defmodule BootstrapForm.PasswordInputTest do
         ~s(<div class="form-group wrapper-class">) <>
           ~s(<label class="control-label" for="user_password">Password</label>) <>
           ~s(<input class="form-control" id="user_password" name="user[password]" type="password">) <>
-        ~s(</div>)
+          ~s(</div>)
 
       input = PasswordInput.build(:user, :password, wrapper_html: [class: "wrapper-class"])
 
@@ -23,7 +24,7 @@ defmodule BootstrapForm.PasswordInputTest do
       expected =
         ~s(<input class="form-control my-class" id="user_password" name="user[password]" type="password">)
 
-       input = PasswordInput.build(:user, :password, class: "my-class")
+      input = PasswordInput.build(:user, :password, class: "my-class")
 
       assert safe_to_string(input) =~ expected
     end

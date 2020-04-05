@@ -1,7 +1,7 @@
 defmodule BootstrapForm.InputBuilderTest do
   use ExUnit.Case
 
-  alias BootstrapForm.Input
+  alias BootstrapForm.InputBuilder
 
   doctest InputBuilder
 

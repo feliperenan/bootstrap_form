@@ -30,7 +30,7 @@ defmodule BootstrapForm.Checkbox do
   def build(form, field_name, options \\ []) do
     input = Input.new(form, field_name, options, @default_classes)
 
-    Wrapper.build_tag(input) do
+    Wrapper.build_tag input do
       [
         checkbox(form, field_name, input.options),
         label(form, field_name, input.label_text, class: "form-check-label")

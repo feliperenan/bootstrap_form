@@ -1,15 +1,13 @@
 defmodule BootstrapForm.Input do
   @moduledoc false
 
-  defstruct [
-    errors: [],
-    hint: nil,
-    label_text: nil,
-    options: [],
-    value: nil,
-    values: nil,
-    wrapper_options: []
-  ]
+  defstruct errors: [],
+            hint: nil,
+            label_text: nil,
+            options: [],
+            value: nil,
+            values: nil,
+            wrapper_options: []
 
   @type t :: %__MODULE__{}
 
@@ -26,7 +24,7 @@ defmodule BootstrapForm.Input do
 
   This function is supposed to be used before an input is built.
   """
-  @spec new(BootstrapForm.form, BootstrapForm.field, Keyword.t, Keyword.t) :: t()
+  @spec new(BootstrapForm.form(), BootstrapForm.field(), Keyword.t(), Keyword.t()) :: t()
   def new(form, field_name, options, default_classes) do
     {wrapper_options, input_options} = Keyword.pop(options, :wrapper_html, [])
     {hint, input_options} = Keyword.pop(input_options, :hint)
@@ -55,7 +53,7 @@ defmodule BootstrapForm.Input do
       options: input_options,
       value: value,
       values: values,
-      wrapper_options: wrapper_options,
+      wrapper_options: wrapper_options
     }
   end
 

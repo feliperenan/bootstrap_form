@@ -1,10 +1,11 @@
 defmodule BootstrapForm.TextareaTest do
   use ExUnit.Case
-  doctest BootstrapForm.Textarea
+
+  alias BootstrapForm.Textarea
 
   import Phoenix.HTML, only: [safe_to_string: 1]
 
-  alias BootstrapForm.Textarea
+  doctest Textarea
 
   describe "build/3" do
     test "generates an textarea input" do
@@ -12,7 +13,7 @@ defmodule BootstrapForm.TextareaTest do
         ~s(<div class="form-group wrapper-class">) <>
           ~s(<label class="control-label" for="user_bio">Bio</label>) <>
           ~s(<textarea class="form-control" id="user_bio" name="user[bio]">\n</textarea>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       input = Textarea.build(:user, :bio, wrapper_html: [class: "wrapper-class"])
 
@@ -21,7 +22,7 @@ defmodule BootstrapForm.TextareaTest do
 
     test "textarea supports custom options" do
       expected =
-          ~s(<textarea class="form-control my-class" id="user_bio" name="user[bio]">\n</textarea>)
+        ~s(<textarea class="form-control my-class" id="user_bio" name="user[bio]">\n</textarea>)
 
       input = Textarea.build(:user, :bio, class: "my-class")
 

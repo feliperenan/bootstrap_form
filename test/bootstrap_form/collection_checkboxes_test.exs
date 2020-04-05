@@ -1,10 +1,11 @@
 defmodule BootstrapForm.CollectionCheckboxesTest do
   use ExUnit.Case
-  doctest BootstrapForm.CollectionCheckboxes
+
+  alias BootstrapForm.CollectionCheckboxes
 
   import Phoenix.HTML, only: [safe_to_string: 1]
 
-  alias BootstrapForm.CollectionCheckboxes
+  doctest CollectionCheckboxes
 
   describe "build/3" do
     test "generates a list of checkbox when the collection is a list of tuples" do
@@ -21,12 +22,12 @@ defmodule BootstrapForm.CollectionCheckboxesTest do
           ~s(<input name="user[active]" type="hidden" value="false">) <>
           ~s(<input class="form-check-input" id="user_active" name="user[active]" type="checkbox" value="true">) <>
           ~s(<label class="form-check-label" for="user_active">Yes</label>) <>
-        ~s(</div>) <>
-        ~s(<div class="form-check">) <>
+          ~s(</div>) <>
+          ~s(<div class="form-check">) <>
           ~s(<input name="user[active]" type="hidden" value="false">) <>
           ~s(<input class="form-check-input" id="user_active" name="user[active]" type="checkbox" value="false">) <>
           ~s(<label class="form-check-label" for="user_active">No</label>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert collection_input |> Enum.map(&safe_to_string/1) |> Enum.join() == expected
     end
@@ -37,7 +38,7 @@ defmodule BootstrapForm.CollectionCheckboxesTest do
           :user,
           :colors,
           type: :collection_checkboxes,
-          collection: ['Red','Blue']
+          collection: ['Red', 'Blue']
         )
 
       expected =
@@ -45,12 +46,12 @@ defmodule BootstrapForm.CollectionCheckboxesTest do
           ~s(<input name="user[colors]" type="hidden" value="false">) <>
           ~s(<input class="form-check-input" id="user_colors" name="user[colors]" type="checkbox" value="Red">) <>
           ~s(<label class="form-check-label" for="user_colors">Red</label>) <>
-        ~s(</div>) <>
-        ~s(<div class="form-check">) <>
+          ~s(</div>) <>
+          ~s(<div class="form-check">) <>
           ~s(<input name="user[colors]" type="hidden" value="false">) <>
           ~s(<input class="form-check-input" id="user_colors" name="user[colors]" type="checkbox" value="Blue">) <>
           ~s(<label class="form-check-label" for="user_colors">Blue</label>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert collection_input |> Enum.map(&safe_to_string/1) |> Enum.join() == expected
     end
@@ -71,12 +72,12 @@ defmodule BootstrapForm.CollectionCheckboxesTest do
           ~s(<input name="user[active]" type="hidden" value="false">) <>
           ~s(<input class="form-check-input checkbox-class" id="user_active" name="user[active]" type="checkbox" value="true">) <>
           ~s(<label class="form-check-label" for="user_active">Yes</label>) <>
-        ~s(</div>) <>
-        ~s(<div class="form-check wrapper-class">) <>
+          ~s(</div>) <>
+          ~s(<div class="form-check wrapper-class">) <>
           ~s(<input name="user[active]" type="hidden" value="false">) <>
           ~s(<input class="form-check-input checkbox-class" id="user_active" name="user[active]" type="checkbox" value="false">) <>
           ~s(<label class="form-check-label" for="user_active">No</label>) <>
-        ~s(</div>)
+          ~s(</div>)
 
       assert collection_input |> Enum.map(&safe_to_string/1) |> Enum.join() == expected
     end

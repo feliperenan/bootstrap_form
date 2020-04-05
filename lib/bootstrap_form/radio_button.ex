@@ -31,7 +31,7 @@ defmodule BootstrapForm.RadioButton do
     input = Input.new(form, field_name, options, @default_classes)
     label_for = input_id(form, field_name, input.value)
 
-    Wrapper.build_tag(input) do
+    Wrapper.build_tag input do
       [
         radio_button(form, field_name, input.value, input.options),
         label(form, field_name, input.label_text, class: "form-check-label", for: label_for)

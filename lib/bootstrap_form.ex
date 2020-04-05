@@ -46,9 +46,8 @@ defmodule BootstrapForm do
   """
 
   @type form :: Phoenix.HTML.Form.t() | atom
-  @type field :: atom() | String.t
-  @type safe_html :: Phoenix.HTML.safe | list(Phoenix.HTML.safe)
-
+  @type field :: atom() | String.t()
+  @type safe_html :: Phoenix.HTML.safe() | list(Phoenix.HTML.safe())
 
   @doc """
   Build a bootstrap input.
@@ -73,7 +72,7 @@ defmodule BootstrapForm do
        `collection_checkboxes` and `collection_radio_buttons`.
 
   """
-  @spec input(form, field, Keyword.t) :: safe_html
+  @spec input(form, field, Keyword.t()) :: safe_html
   def input(form, field_name, options \\ []) do
     {type, options} = Keyword.pop(options, :type)
 

@@ -29,7 +29,7 @@ defmodule BootstrapForm.TextInput do
   def build(form, field_name, options \\ []) do
     input = Input.new(form, field_name, options, @default_classes)
 
-    Wrapper.build_tag(input) do
+    Wrapper.build_tag input do
       [
         label(form, field_name, class: @label_class),
         text_input(form, field_name, input.options)

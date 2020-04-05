@@ -1,11 +1,12 @@
 defmodule BootstrapForm.TextInputTest do
   use ExUnit.Case
-  doctest BootstrapForm.TextInput
+
+  alias BootstrapForm.TextInput
 
   import Phoenix.HTML, only: [safe_to_string: 1]
   import Phoenix.HTML.Form, only: [form_for: 4]
 
-  alias BootstrapForm.TextInput
+  doctest TextInput
 
   describe "build/3" do
     test "generates an text input" do
@@ -13,7 +14,7 @@ defmodule BootstrapForm.TextInputTest do
         ~s(<div class="form-group wrapper-class">) <>
           ~s(<label class="control-label" for="user_name">Name</label>) <>
           ~s(<input class="form-control" id="user_name" name="user[name]" type="text">) <>
-        ~s(</div>)
+          ~s(</div>)
 
       input = TextInput.build(:user, :name, wrapper_html: [class: "wrapper-class"])
 
@@ -24,7 +25,8 @@ defmodule BootstrapForm.TextInputTest do
       expected =
         ~s(<input class="form-control my-class" id="user_name" name="user[name]" placeholder="Inform your full name." type="text">)
 
-      input = TextInput.build(:user, :name, class: "my-class", placeholder: "Inform your full name.")
+      input =
+        TextInput.build(:user, :name, class: "my-class", placeholder: "Inform your full name.")
 
       assert safe_to_string(input) =~ expected
     end
@@ -39,7 +41,8 @@ defmodule BootstrapForm.TextInputTest do
           TextInput.build(form, :name)
         end)
 
-      expected = ~s(<input class="form-control is-invalid" id="user_name" name="user[name]" type="text">)
+      expected =
+        ~s(<input class="form-control is-invalid" id="user_name" name="user[name]" type="text">)
 
       assert safe_to_string(form) =~ expected
     end

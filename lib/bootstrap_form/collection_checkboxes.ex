@@ -54,6 +54,8 @@ defmodule BootstrapForm.CollectionCheckboxes do
     end
   end
 
-  def build_item_options({value, label}), do: [label_text: label, value: value, checked_value: value]
+  def build_item_options({value, label}),
+    do: [label_text: label, value: value, checked_value: value]
+
   def build_item_options(value), do: [label_text: value, value: value, checked_value: value]
 end
